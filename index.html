@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+
+
+    <!--AXIOS fro GITHUB, which makes it possible to make a request to an API via AJAX-->
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <!--End AXIOS-->
+
+    <!--Begin bootstrap in the head-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+  
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  <!--End bootstrap in the head-->
+
+<!--- Bootstrap 4 Begin-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--- Bootstrap 4 End-->
+
+
+    <!--Begin Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+        <!--End Google fonts-->
+            <!--Add CSS at the end of the head so it overrides Bootsratp-->
+        <link href="src/styles.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>h1 {
+  color: blue;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+
+.weatherapp {
+  margin-top: 30px;
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+p.day {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+}
+
+p.daytemp {
+  font-weight: 300;
+  font-size: 14px;
+  text-align: center;
+}
+
+p.country {
+  font-weight: 300;
+  font-size: 60px;
+}
+
+.maintemp {
+  font-weight: 600;
+  font-size: 60px;
+  text-align: center;
+}
+
+.tempunits {
+  position: relative;
+  font-size: 20px;
+  top: -28px;
+}
+
+.weather-icon {
+  font-size: 30px;
+  text-align: center;
+}
+
+img {
+  border-radius: 50px;
+}
+
+.country-info {
+  list-style: none;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.footer {
+  font-size: 10pt;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.leftside,
+.rightside {
+  height: 50vh;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .leftside,
+  .rightside {
+    height: 100vh;
+  }
+}
+
+.leftside {
+  background: red;
+}
+
+.rightside {
+  background: blue;
+}
+
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.column {
+			flex: 50%;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+
+		@media screen and (max-width: 600px) {
+			.column {
+				flex: 100%;
+			}
+		}
+
+
+
+</style>
+  </head>
+
+  <body>
+    <!--Must add div with class 'container' for bootstrap to work-->
+    <div class="container">
+      <!--weather app-->
+      <div class="weatherapp">
+        <div class="card">
+          <div class="card-body">
+            <!--start search bar-->
+            <form id="city-form">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Choose your country"
+                id="city-text-input"
+                autocomplete="off"
+              />
+
+              <input
+                class="btn btn-outline-secondary"
+                type="submit"
+                value="Search"
+                id="button-addon2"
+              />
+
+
+            </form>
+
+            <!--end search bar-->
+
+            <div class="row">
+              <div class="col-6">
+                <p class="country" id="city">Jakarta</p>
+              </div>
+
+              <div class="col-6">
+                <p>
+                  <img id="icon" src="https://openweathermap.org/img/wn/10d@2x.png" />
+                  <span id="temperature" class="maintemp">100</span>
+                  <span class="tempunits"><a href="#">°C</a> | <a href="#">°F</a></span>
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <ul class="country-info">
+              <li> Humidity: <span id="humidity">XX</span>%</li>
+              <li>Wind: <span id="wind">XX</span>%</li>
+              <li id="date">Tuesday 16:00</li>
+              </ul>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-2">
+                <p class="weather-icon"><i class="bi-cloud"></i></p>
+                <p></p>
+                <p class="day">Monday</p>
+                <p class="daytemp">90°F / 77°F</p>
+              </div>
+              <div class="col-2">
+                <p class="weather-icon">
+                  <i class="bi bi-cloud"></i>
+                </p>
+                <p></p>
+                <p class="day">Tuesday</p>
+                <p class="daytemp">87°F / 75°F</p>
+              </div>
+              <div class="col-2">
+                <p class="weather-icon"><i class="bi-cloud"></i></p>
+                <p></p>
+                <p class="day">Wednesday</p>
+                <p class="daytemp">86°F / 75°F</p>
+              </div>
+              <div class="col-2">
+                <p class="weather-icon"><i class="bi-cloud"></i></p>
+                <p></p>
+                <p class="day">Thursday</p>
+                <p class="daytemp">87°F / 77°F</p>
+              </div>
+              <div class="col-2">
+                <p class="weather-icon"><i class="bi-cloud"></i></p>
+                <p></p>
+                <p class="day">Friday</p>
+                <p class="daytemp">86°F / 76°F</p>
+              </div>
+              <div class="col-2">
+                <p class="weather-icon"><i class="bi-cloud"></i></p>
+                <p></p>
+                <p class="day">Saturday</p>
+                <p class="daytemp">50°F / 50°F</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <p class="footer"><a href=https://github.com/mindinash/WeatherAppRepository>Open-source code</a> by Mindi Nash</p>
+
+<!---Video-->
+<br />
+        <div class="iframe-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aeZJcsC8E_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+    <!---Test Split Screen-->
+<br />
+  <div class="row no-gutters">
+    <div class="col-md-6 no-gutters">
+      <div class="leftside"></div>
+    </div>
+        <div class="col-md-6 no-gutters">
+      <div class="rightside"></div>
+    </div>
+  </div>
+
+<!---Test Split Screen II-->
+  	<div class="row">
+		<div class="column" style="background-color:#aaa;">
+			<h2>Left Column</h2>
+			<p>Some text..</p>
+		</div>
+		<div class="column" style="background-color:#bbb;">
+			<h2>Right Column</h2>
+			<p>Some text..</p>
+		</div>
+	</div>
+
+        <!--Div for the container & weatherapp class-->
+      </div>
+
+ 
+    </div>
+
+
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
